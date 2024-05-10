@@ -2,3 +2,35 @@
     margin: 0;
     padding: 0;
 }
+
+.fotos {
+    height: 225px;
+    width: 275px;
+    border: 1px solid;
+    float: left;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    
+}
+.fotos img {
+    margin: auto;
+    display: block;
+    
+}
+
+.fotos .album {
+    float: left;
+    margin-left: 5px;
+}
+
+.fotos .foto{
+    float: right;
+    margin-right: 5px;
+}
+.fotos .title {
+    margin-top: 20px;
+    width: 90%;
+    text-align: center;
+    padding: 5px;
+
+}

@@ -8,6 +8,11 @@ const linkPosts = document.getElementById('linkPosts')
 const linkComments = document.getElementById('linkComments')
 const linkAlbums = document.getElementById('linkAlbums')
 const linkPhtos = document.getElementById('linkPhtos')
+const ContenedorFotos = document.getElementById('row-photos');
+const ContenedorPosts = document.getElementById('row-posts');
+const ContenedorUsuarios = document.getElementById('row-user');
+const ContenedorAlbums = document.getElementById('row-albums');
+const ContenedorComentarios = document.getElementById('row-comments');
 linkUsers.onclick = cargarUsuarios
 linkPosts.onclick = cargarPosts
 linkComments.onclick = cargarComentarios
@@ -32,7 +37,11 @@ request.onload = function (){
     }
 }
 function cargar(){
-    ContenedorDatos.innerHTML = ''
+    ContenedorFotos.innerHTML = ''
+    ContenedorUsuarios.inert = ''
+    ContenedorPosts.innerHTML = ''
+    ContenedorAlbums.innerHTML = ''
+    ContenedorComentarios.innerHTML = ''
     request.open('GET', api + atributo)
     request.send();
 }
@@ -65,17 +74,19 @@ function mostrarUsuarios(usuarios){
         const username = document.createElement('h5');
         const email = document.createElement('h5');
 
-        id.textContent = array[i].id
-        name.textContent = array[i].name
-        username.textContent = array[i].username
-        email.textContent = array[i].email
+        targetaUser.setAttribute('class', 'col-sm-12 col-md-6 col-lg-4 col-xl-3')
+
+        id.textContent = "Usuario: " + array[i].id
+        name.textContent = "Nombre: " + array[i].name
+        username.textContent = "Nombre de usuario: "  + array[i].username
+        email.textContent = "Correo: " + array[i].email
 
         targetaUser.appendChild(id)
         targetaUser.appendChild(name)
         targetaUser.appendChild(username)
         targetaUser.appendChild(email)
 
-        ContenedorDatos.appendChild(targetaUser)
+        ContenedorUsuarios.appendChild(targetaUser)
     }
 }
 function mostrarFotos(fotos){
@@ -85,11 +96,8 @@ function mostrarFotos(fotos){
         const title = document.createElement('h5');
         const url = document.createElement('img');
         const albumId = document.createElement('h5');
-
-        targetaPhotos.setAttribute('class', 'fotos')
-        albumId.setAttribute('class', 'album')
-        id.setAttribute('class', 'foto')
-        title.setAttribute('class', 'title')
+        
+        targetaPhotos.setAttribute('class', ' text-center col-sm-12 col-md-6 col-lg-4 col-xl-2')
 
         id.textContent = 'Foto: ' + array[i].id
         title.textContent = 'Titulo:' + array[i].title
@@ -101,7 +109,7 @@ function mostrarFotos(fotos){
         targetaPhotos.appendChild(title)
         targetaPhotos.appendChild(url)
 
-        ContenedorDatos.appendChild(targetaPhotos)
+        ContenedorFotos.appendChild(targetaPhotos)
     }
 }
 function mostrarPosts(posts){
@@ -112,17 +120,19 @@ function mostrarPosts(posts){
         const userId = document.createElement('h5');
         const body = document.createElement('h5');
 
-        id.textContent = array[i].id
-        userId.textContent = array[i].userId
-        title.textContent = array[i].title
-        body.textContent = array[i].body
+        targetaUser.setAttribute('class', 'card col-sm-12 col-md-6 col-lg-4 col-xl-2')
+        if( atributo == 'posts' ) id.textContent = "Post: " + array[i].id
+        if( atributo == 'albums') id.textContent = "Album: " + array[i].id
+        userId.textContent = "Usuario: " + array[i].userId
+        title.textContent = "Titulo: " + array[i].title
+        body.textContent =  array[i].body
 
         targetaUser.appendChild(userId)
         targetaUser.appendChild(id)
         targetaUser.appendChild(title)
         targetaUser.appendChild(body)
 
-        ContenedorDatos.appendChild(targetaUser)
+        ContenedorPosts.appendChild(targetaUser)
     }
 }
 function mostrarComentarios(comments){
@@ -134,7 +144,9 @@ function mostrarComentarios(comments){
         const email = document.createElement('h5');
         const body = document.createElement('h5');
 
-        id.textContent = array[i].id
+        targetaUser.setAttribute('class', 'col-sm-12 col-md-6 col-lg-4 col-xl-3')
+
+        id.textContent =  array[i].id
         postId.textContent = array[i].postId
         name.textContent = array[i].name
         body.textContent = array[i].body
@@ -146,6 +158,6 @@ function mostrarComentarios(comments){
         targetaUser.appendChild(email)
         targetaUser.appendChild(body)
 
-        ContenedorDatos.appendChild(targetaUser)
+        ContenedorComentarios.appendChild(targetaUser)
     }
 }
